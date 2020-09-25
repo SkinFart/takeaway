@@ -1,4 +1,4 @@
-'''This is an input function for the custoemrs information'''
+'''This is an input function for the customers information'''
 
 def customer():
     customer_info=[]
