@@ -1,6 +1,6 @@
 '''This is an input function for the customers information'''
 
-def customer():
+def customer(): #Defining the function
     customer_info=[]
     a=0
     while a==0:
