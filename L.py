@@ -1,4 +1,4 @@
-'''skin'''
+'''This is an input function for the custoemrs information'''
 
 def customer():
     customer_info=[]
