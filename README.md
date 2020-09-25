@@ -1,2 +1,4 @@
 # takeaway
-This is a python program for a fast food restaurant that takes in orders. 
+The function of this program is to take orders for a fast food resturant. Within this repository are all the different version of code and the change history. 
+
+Created by William Bigley
