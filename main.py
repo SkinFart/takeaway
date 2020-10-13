@@ -1,5 +1,10 @@
+#import
 import tkinter
 from menu2 import menu
+
+#functions
+def greeting():
+    print("Welcome to Joe Nuts")
 
 def display():
     for i in menu:
@@ -9,11 +14,6 @@ def display():
         text="${price}\t{item}".format(item=n, price=l)
         print(text)
 
+#main program
+greeting()
 display()
-
-
-
-#top = tkinter.Tk()
-# Code to add widgets will go here...
-
-#top.mainloop()

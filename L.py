@@ -6,9 +6,8 @@ def customer(): #Defining the function
     while a==0:
         try:
             name=str(input("What is your name: "))
-            #if name != str:
             address=input("What is you delivery address: ")
-            phone=int(input("What is your contact number: "))
+            phone=int(input("What is your contact number (no spaces): "))
             customer_info.extend((name, address, phone))
             a+=1
         except ValueError:
