@@ -5,11 +5,14 @@ def customer(): #Defining the function
     a=0
     while a==0:
         try:
-            name=str(input("What is your name: "))
-            address=input("What is you delivery address: ")
-            phone=int(input("What is your contact number (no spaces): "))
-            customer_info.extend((name, address, phone))
-            a+=1
+            name=input("What is your name: ")
+            if not name.isalpha():
+                print('L')
+            else:
+                address=input("What is you delivery address: ")
+                phone=int(input("What is your contact number (no spaces): "))
+                customer_info.extend((name, address, phone))
+                a+=1
         except ValueError:
             print("Please enter a valid input")
     return customer_info
