@@ -76,7 +76,7 @@ def order():
         except ValueError:
             print("Not a valid input.")
 
-t=""
+t="" #for order function loop to run
 
 #main program
 greeting()

@@ -28,21 +28,29 @@ def order():
                     n=d['item'] #pulls item name from dictionary
                     #s.append(n) #adds to order list using the item name
                     if n in z:
-                        z[n]+=1
+                        z[n]+=quantity
                     else:
                         z[n]=quantity #sends the order and quantiy to a dictionary
+                
+                #if 
             elif item == 0:
                 return z
         except ValueError:
             print("Not a valid input.")
+  
 
+#def calc():
 
 
 t=""
-a=0
-order_info=[]
+MAX=5
 
 display()
 a=order()
 print(a)
+for i in a:
+    if a[i] > MAX:
+        print(a[i],"was over the limit of 5. Put order quanity to 5 for convinience.")
+        a[i]=5
+    print(i,a[i])
 
