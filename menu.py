@@ -10,7 +10,6 @@ def display():
         print(text)
 
 def order():
-    #s=[] #order list
     z={} #test dictionary
     t=input("Would you like to make an order? If not please leave blank. ")
     while t != "":
@@ -26,21 +25,27 @@ def order():
                     f='item'+str(item) #creates item search term
                     d=menu[f] #sets the order item to a variable
                     n=d['item'] #pulls item name from dictionary
-                    #s.append(n) #adds to order list using the item name
                     if n in z:
                         z[n]+=quantity
                     else:
                         z[n]=quantity #sends the order and quantiy to a dictionary
                 
-                #if 
             elif item == 0:
                 return z
         except ValueError:
             print("Not a valid input.")
   
+def check():
+    for i in a:
+        if a[i] > MAX:
+            print(a[i],"was over the limit of 5. Put order quanity to 5 for convinience.")
+            a[i]=MAX
+            print(i,a[i])
+    return a
 
-#def calc():
+def calc():
 
+    return "skin"
 
 t=""
 MAX=5
@@ -48,9 +53,7 @@ MAX=5
 display()
 a=order()
 print(a)
-for i in a:
-    if a[i] > MAX:
-        print(a[i],"was over the limit of 5. Put order quanity to 5 for convinience.")
-        a[i]=5
-    print(i,a[i])
-
+skin=check()
+print(skin)
+q=calc()
+print(q)
