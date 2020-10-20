@@ -1,53 +1,13 @@
-#Imported things
 from menu2 import menu
-
-#functions
-def greeting():
-    print("Welcome to Joe Nuts")
 
 def display():
     for i in menu:
         b=menu[i]
+        m=b["id"]
         n=b["item"]
         l=b["price"]
-        text="${price}\t{item}".format(item=n, price=l)
+        text="{id}.\t${price}\t{item}".format(item=n, price=l, id=m)
         print(text)
-
-def customer_name():
-    a=0
-    while a != 1:
-        try:
-            name=input("Enter name: ") #initial input 
-            if not name.isalpha(): #checks if name contains only characters
-                print("Please enter only alphabetical characters for your name. ")
-            else:
-                a=1
-                return name
-        except ValueError:
-            print("Please enter a proper name")
-
-def address():
-    a=0
-    while a != 1:
-        try:
-            address=input("Enter delivery address: ") #initial input 
-            if address =="":
-                print("Address cannot be blank. ")
-            else:
-                a=1
-                return address
-        except ValueError:
-            print("Please enter a proper name")
-
-def phone():
-    a=0
-    while a != 1:
-        try:
-            phone_number=int(input("Enter contact number: ")) #initial input 
-            a=1
-            return phone_number
-        except ValueError:
-            print("Please enter a valid input")
 
 def order():
     z={} #test dictionary
@@ -101,14 +61,13 @@ def confirm():
     elif edit == "y":
         return edit
 
+
+
 MAX=5 #constant for order limit for each item
 order_out={} #dictionary to display the customers order
 
-#main program
-MAX=5 #constant for order limit for each item
-order_out={} #dictionary to display the customers order
-display() #displays the menu
 while True:
+    display() #displays the menu
     customer_order=order() #gets the customers order
     order_check=check() #checks if anything is over the limit (due to you being able to add item x multiple times and going over limit)
     total_cost=calc(order_check) #price calculation
