@@ -58,6 +58,10 @@ def confirm():
         edit=input("Would you like to edit your order? y/n ").lower()
     if edit == "n":
         print("L")
+    elif edit == "y":
+        return edit
+
+
 
 MAX=5 #constant for order limit for each item
 order_out={} #dictionary to display the customers order
@@ -67,7 +71,8 @@ while True:
     customer_order=order() #gets the customers order
     order_check=check() #checks if anything is over the limit (due to you being able to add item x multiple times and going over limit)
     total_cost=calc(order_check) #price calculation
-    confirm()
+    order_confirm=confirm()
+    
     cont=input("Would you like to make another order? y/n > ").lower()
     while cont not in("y","n"):
         cont=input("Would you like to make another order? y/n > ").lower()
