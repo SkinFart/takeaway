@@ -25,10 +25,12 @@ def order():
                     f='item'+str(item) #creates item search term
                     d=menu[f] #sets the order item to a variable
                     n=d['item'] #pulls item name from dictionary
-                    if n in z:
-                        z[n]+=quantity
+                    if f in z:
+                        z[f]+=quantity
+                        orderout[n]+=quantity
                     else:
-                        z[n]=quantity #sends the order and quantiy to a dictionary
+                        z[f]=quantity #sends to the list used for calc
+                        orderout[n]=quantity #sends to the list to display order
                 
             elif item == 0:
                 return z
@@ -36,24 +38,24 @@ def order():
             print("Not a valid input.")
   
 def check():
-    for i in a:
-        if a[i] > MAX:
-            print(a[i],"was over the limit of 5. Put order quanity to 5 for convinience.")
-            a[i]=MAX
-            print(i,a[i])
-    return a
+    for i in customer_order:
+        if customer_order[i] > MAX:
+            print(customer_order[i],"was over the limit of 5. Put order quanity to 5 for convinience.")
+            customer_order[i]=MAX
+            print(i,customer_order[i])
+    return customer_order
 
-def calc():
+def calc(bruh):
+    z = sum([ menu[b]["price"]*bruh[b] for b in bruh.keys() ])
+    print("Price: " + str(z))
+    return z
 
-    return "skin"
+t="" #used for loop
+MAX=5 #constant for order limit for each item
+orderout={} #dictionary to display the customers order
 
-t=""
-MAX=5
-
-display()
-a=order()
-print(a)
-skin=check()
-print(skin)
-q=calc()
-print(q)
+display() #displays the menu
+customer_order=order() #gets the customers order
+order_check=check() #checks if anything is over the limit (due to you being able to add item x multiple times and going over limit)
+total_cost=calc(order_check) #price calculation
+print(orderout)

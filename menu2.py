@@ -60,4 +60,4 @@ menu={
         "price": 3.50
     },
 
-}
+} # query = dict["item2"]["price"]
