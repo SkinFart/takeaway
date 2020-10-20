@@ -27,10 +27,10 @@ def order():
                     n=d['item'] #pulls item name from dictionary
                     if f in z:
                         z[f]+=quantity
-                        orderout[n]+=quantity
+                        order_out[n]+=quantity
                     else:
                         z[f]=quantity #sends to the list used for calc
-                        orderout[n]=quantity #sends to the list to display order
+                        order_out[n]=quantity #sends to the list to display order
                 
             elif item == 0:
                 return z
@@ -47,15 +47,27 @@ def check():
 
 def calc(bruh):
     z = sum([ menu[b]["price"]*bruh[b] for b in bruh.keys() ])
-    print("Price: " + str(z))
+    #print("Price: " + str(z))
     return z
+
+def confirm():
+    print('\n'.join("{}: {}".format(k, v) for k, v in order_out.items()))
+    print("Total Cost: $"+str(total_cost))
+    edit=input("Would you like to edit your order? y/n ").lower()
+    if edit == "y":
+        print("")
+    elif edit == "n":
+        print("Order will be")
+    else:
+        print("Invalid Input")
+
 
 t="" #used for loop
 MAX=5 #constant for order limit for each item
-orderout={} #dictionary to display the customers order
+order_out={} #dictionary to display the customers order
 
 display() #displays the menu
 customer_order=order() #gets the customers order
 order_check=check() #checks if anything is over the limit (due to you being able to add item x multiple times and going over limit)
 total_cost=calc(order_check) #price calculation
-print(orderout)
+confirm()
