@@ -54,20 +54,22 @@ def confirm():
     print('\n'.join("{}: {}".format(k, v) for k, v in order_out.items()))
     print("Total Cost: $"+str(total_cost))
     edit=input("Would you like to edit your order? y/n ").lower()
-    if edit == "y":
-        print("")
-    elif edit == "n":
-        print("Order will be")
-    else:
-        print("Invalid Input")
+    while edit not in ("y","n"):
+        edit=input("Would you like to edit your order? y/n ").lower()
+    if edit == "n":
+        print("L")
 
-
-t="" #used for loop
 MAX=5 #constant for order limit for each item
 order_out={} #dictionary to display the customers order
 
-display() #displays the menu
-customer_order=order() #gets the customers order
-order_check=check() #checks if anything is over the limit (due to you being able to add item x multiple times and going over limit)
-total_cost=calc(order_check) #price calculation
-confirm()
+while True:
+    display() #displays the menu
+    customer_order=order() #gets the customers order
+    order_check=check() #checks if anything is over the limit (due to you being able to add item x multiple times and going over limit)
+    total_cost=calc(order_check) #price calculation
+    confirm()
+    cont=input("Would you like to make another order? y/n > ").lower()
+    while cont not in("y","n"):
+        cont=input("Would you like to make another order? y/n > ").lower()
+    if cont == "n":
+        break
