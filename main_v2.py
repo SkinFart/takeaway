@@ -105,7 +105,7 @@ def confirm():
         edit = input("Would you like to edit your order? y/n ").lower()
     if edit == "n":
         print("Finalising order.")
-        print("Order for",name,"> Deliver to",address,"> Contact No.",phone,"\nTotal Order Cost: $"+str(total_cost))
+        print("Order for", name, "> Deliver to", address, "> Contact No.", phone, "\nTotal Order Cost: $"+str(total_cost))
         print('\n'.join("{}: {}".format(k, v) for k, v in order_out.items()))
         print("Total Cost: $"+str(total_cost))
     elif edit == "y":
@@ -143,7 +143,7 @@ while True:
     order_confirm = confirm()
     change(order_confirm)
     cont = input("Would you like to make another order? y/n > ").lower()
-    while cont not in ("y" , "n"):
+    while cont not in ("y", "n"):
         cont = input("Would you like to make another order? y/n > ").lower()
     if cont == "n":
         break
