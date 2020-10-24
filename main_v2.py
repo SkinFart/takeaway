@@ -1,6 +1,7 @@
 # Imported things
 from menu2 import menu
 
+
 # Functions
 def greeting():
     print("Welcome to Joe Nuts")
@@ -33,7 +34,7 @@ def address():
     a = 0
     while a != 1:
         try:
-            address = input("Enter delivery address: ")  #Initial input
+            address = input("Enter delivery address: ")  # Initial input
             if address == "":
                 print("Address cannot be blank. ")
             else:
@@ -47,7 +48,7 @@ def phone():
     a = 0
     while a != 1:
         try:
-            phone_number = int(input("Enter contact number: "))  # Initial input
+            phone_number = int(input("Enter contact number: "))
             a = 1
             return phone_number
         except ValueError:
@@ -76,9 +77,9 @@ def order():
                     else:
                         z[f] = quantity  # Sends to the list used for calc
                         order_out[n] = quantity  # Sends to the list to display order
-                
+
             elif item == 0:
-                return z
+                return zs
         except ValueError:
             print("Not a valid input.")
 
@@ -86,9 +87,9 @@ def order():
 def check():
     for i in customer_order:
         if customer_order[i] > MAX:
-            print(customer_order[i],"was over the limit of 5. Put order quanity to 5 for convinience.")
+            print(customer_order[i], "was over the limit of 5. Put order quanity to 5 for convinience.")
             customer_order[i] = MAX
-            print(i,customer_order[i])
+            print(i, customer_order[i])
     return customer_order
 
 
@@ -101,7 +102,7 @@ def confirm():
     print('\n'.join("{}: {}".format(k, v) for k, v in order_out.items()))
     print("Total Cost: $"+str(total_cost))
     edit = input("Would you like to edit your order? y/n ").lower()
-    while edit not in ("y","n"):
+    while edit not in ("y", "n"):
         edit = input("Would you like to edit your order? y/n ").lower()
     if edit == "n":
         print("Finalising order.")
@@ -122,8 +123,6 @@ def change(skin):
         b = int(input("How many would you like? > "))
         order_out[a] = b
         print(order_out)
-
-
 
 
 MAX = 5  # Constant for order limit for each item
