@@ -59,8 +59,10 @@ def phone():  # Tested, this is better than using try/except, better formatting 
 
 
 def order():
-    z = {}  # Test dictionary
+    order = {}  # Order dictionary
     t = input("Would you like to make an order? If not please leave blank. ")
+    if t == "":
+        return {}
     while t != "":
         try:
             item = int(input("Please make a selection 1-12 of the menu (0 to finish order): "))
@@ -74,15 +76,16 @@ def order():
                     f = 'item'+str(item)  # Creates item search term
                     d = menu[f]  # Sets the order item to a variable
                     n = d['item']  # Pulls item name from dictionary
-                    if f in z:
-                        z[f] += quantity
+                    if f in order:
+                        order[f] += quantity
                         order_out[n] += quantity
                     else:
-                        z[f] = quantity  # Sends to the list used for calc
+                        order[f] = quantity  # Sends to the list used for calc
                         order_out[n] = quantity  # Sends to the list to display order
 
             elif item == 0:
-                return z
+                return order
+                order.clear()
         except ValueError:
             print("Not a valid input.")
 
@@ -92,57 +95,62 @@ def check():
         if customer_order[i] > MAX:
             print(customer_order[i], "was over the limit of 5. Put order quanity to 5 for convinience.")
             customer_order[i] = MAX
-            coon = menu[i]["item"]
-            order_out[coon] = MAX
+            item = menu[i]["item"]
+            order_out[item] = MAX
     return customer_order
 
 
 def calc(bruh):
-    z = sum([menu[b]["price"]*bruh[b] for b in bruh.keys()])
+    z = sum([menu[b]["price"]*bruh[b] for b in bruh.keys()])  # Calculates the total price
     return z
 
 
 def confirm():
-    print('\n'.join("{}: {}".format(k, v) for k, v in order_out.items()))
+    print('\n'.join("{}: {}".format(k, v) for k, v in order_out.items()))  # Prints order to view
     print("Total Cost: $"+str(total_cost))
     edit = input("Would you like to edit your order? y/n ").lower()
     while edit not in ("y", "n"):
         edit = input("Would you like to edit your order? y/n ").lower()
     if edit == "n":
-        brown()
+        final()
+        return edit
     elif edit == "y":
         return edit
 
 
-def change(skin):
-    m = {}
-    if skin == "n":
-        print("Finalising order. ")
-    elif skin == "y":
-        a = input("What item would you like to change? > ")
-        while a not in (order_out):
-            a = input("What item would you like to change? > ")
-        b = int(input("How many would you like? > "))
-        order_out[a] = b
-        for i in order_check:
-            x = menu[i]['item']
-            if x == a:
-                order_check[i] = b
-        print(order_check)
-        brown()
+def change(option):
+    keep_going = True
+    while keep_going:
+        if option == "n":
+            print("Order Confirmed. ")
+            keep_going = False
+        elif option == "y":
+            item = input("What item would you like to change? > ").title()
+            while item not in (order_out):
+                item = input("What item would you like to change? > ").title()
+            amount = int(input("How many would you like? > "))
+            while amount > 5:
+                amount = int(input("How many would you like? Cannot be greater than 5 > "))
+            order_out[item] = amount
+            for i in order_check:
+                x = menu[i]['item']
+                if x == item:
+                    order_check[i] = amount
+            option = input("Would you like to change another item? y/n > ")
+            final()
 
 
-def brown():
+def final():
     print("Finalising order.")
     print("Order for", name, "> Deliver to", address, "> Contact No.", phone, "\nTotal Order Cost: $"+str(total_cost))
     print('\n'.join("{}: {}".format(k, v) for k, v in order_out.items()))
-    a = calc(order_check)
-    print("Total Cost: $"+str(a))
+    total_price = calc(order_check)
+    print("Total Cost: $"+str(total_price))
 
 
 MAX = 5  # Constant for order limit for each item
 order_out = {}  # Dictionary to display the customers order
-
+loop = True
 # Main program
 
 greeting()
@@ -150,7 +158,8 @@ name = customer_name()
 address = address()
 phone = phone()
 display()  # Displays the menu
-while True:
+while loop:
+    display()
     customer_order = order()  # Gets the customers order
     order_check = check()  # Checks if anything is over the limit
     total_cost = calc(order_check)  # Price calculation
@@ -159,9 +168,9 @@ while True:
     cont = input("Would you like to make another order? y/n > ").lower()
     while cont not in ("y", "n"):
         cont = input("Would you like to make another order? y/n > ").lower()
-    if cont == "y":
+    if cont == "y":  # If you want to make another order, this just wipes the dictionaries from old order
         order_check.clear()
         customer_order.clear()
-        order_out.clear
+        order_out.clear()
     else:
-        break
+        loop = False
