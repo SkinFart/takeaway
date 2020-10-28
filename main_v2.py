@@ -60,16 +60,18 @@ def phone():  # Tested, this is better than using try/except, better formatting 
 
 def order():
     order = {}  # Order dictionary
-    t = input("Would you like to make an order? If not please leave blank. ")
+    t = input("Would you like to make an order? Max order limit 5. If not please leave blank. > ")
     if t == "":
         return {}
     while t != "":
         try:
-            item = int(input("Please make a selection 1-12 of the menu (0 to finish order): "))
+            item = int(input("Please make a selection 1-12 of the menu (0 to finish order): > "))
             if item >= 1 and item <= 12:
                 quantity = int(input("How many: "))
                 if quantity > 5:
                     print("Max order limit is 5. ")
+                elif quantity < 0:
+                    print("Amount cannot be a negative value.")
                 elif quantity == 0:
                     print("Item not added. ")
                 else:
@@ -110,9 +112,9 @@ def confirm():
     print("Total Cost: $"+str(total_cost))
     if order_check == {}:
         return "n"
-    edit = input("Would you like to edit your order? y/n ").lower()
+    edit = input("Would you like to edit your order? y/n > ").lower()
     while edit not in ("y", "n"):
-        edit = input("Would you like to edit your order? y/n ").lower()
+        edit = input("Would you like to edit your order? y/n > ").lower()
     if edit == "n":
         final()
         return edit
@@ -124,7 +126,7 @@ def change(option):
     keep_going = True
     while keep_going:
         if option == "n":
-            print("Order Confirmed. ")
+            print("Order Confirmed. \n")
             keep_going = False
         elif option == "y":
             item = input("What item would you like to change? > ").title()
@@ -143,8 +145,8 @@ def change(option):
 
 
 def final():
-    print("Finalising order.")
-    print("Order for", name, "> Deliver to", address, "> Contact No.", phone, "\nTotal Order Cost: $"+str(total_cost))
+    print("Finalising order.\n")
+    print("Order for", name, "> Deliver to", address, "> Contact No.", phone,)
     print('\n'.join("{}: {}".format(k, v) for k, v in order_out.items()))
     total_price = calc(order_check)
     print("Total Cost: $"+str(total_price))
