@@ -108,6 +108,8 @@ def calc(bruh):
 def confirm():
     print('\n'.join("{}: {}".format(k, v) for k, v in order_out.items()))  # Prints order to view
     print("Total Cost: $"+str(total_cost))
+    if order_check == {}:
+        return "n"
     edit = input("Would you like to edit your order? y/n ").lower()
     while edit not in ("y", "n"):
         edit = input("Would you like to edit your order? y/n ").lower()
@@ -129,8 +131,8 @@ def change(option):
             while item not in (order_out):
                 item = input("What item would you like to change? > ").title()
             amount = int(input("How many would you like? > "))
-            while amount > 5:
-                amount = int(input("How many would you like? Cannot be greater than 5 > "))
+            while amount > 5 or amount < 0:
+                amount = int(input("How many would you like? Cannot be greater than 5 or less than 0 > "))
             order_out[item] = amount
             for i in order_check:
                 x = menu[i]['item']
@@ -157,7 +159,6 @@ greeting()
 name = customer_name()
 address = address()
 phone = phone()
-display()  # Displays the menu
 while loop:
     display()
     customer_order = order()  # Gets the customers order
