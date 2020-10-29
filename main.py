@@ -1,9 +1,18 @@
-#Imported things
+'''
+The purpose of this program is to take a customers order from the takeaway chain Joe Nuts.
+William Bigley
+21/10/20
+Version 1
+'''
+
+#  Imported things
 from menu2 import menu
 
-#functions
+
+#  functions
 def greeting():
     print("Welcome to Joe Nuts")
+
 
 def display():
     for i in menu:
@@ -12,6 +21,7 @@ def display():
         l=b["price"]
         text="${price}\t{item}".format(item=n, price=l)
         print(text)
+
 
 def customer_name():
     a=0
@@ -26,6 +36,7 @@ def customer_name():
         except ValueError:
             print("Please enter a proper name")
 
+
 def address():
     a=0
     while a != 1:
@@ -39,6 +50,7 @@ def address():
         except ValueError:
             print("Please enter a proper name")
 
+
 def phone():
     a=0
     while a != 1:
@@ -48,6 +60,7 @@ def phone():
             return phone_number
         except ValueError:
             print("Please enter a valid input")
+
 
 def order():
     z={} #test dictionary

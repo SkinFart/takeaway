@@ -1,3 +1,11 @@
+'''
+The purpose of this program is to take a customers order from the takeaway chain Joe Nuts.
+William Bigley
+26/10/20
+Version 1.1
+'''
+
+
 from menu2 import menu
 
 def display():
