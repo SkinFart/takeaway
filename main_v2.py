@@ -20,11 +20,13 @@ loop = True  # Used for main loop
 # Functions
 def greeting():
     """The functions purpose is to welcome the customer."""
+
     print("Welcome to Joe Nuts")
 
 
 def display():  # Done like this to make changes easy
     """The functions purpose is to display the menu."""
+
     for i in menu:
         b = menu[i]  # Id of dictionary for each item
         item = b["item"]  # This gets the item name
